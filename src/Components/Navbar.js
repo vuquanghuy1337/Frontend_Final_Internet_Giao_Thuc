@@ -1,13 +1,27 @@
-import { PageHeader } from "antd";
+import { Menu } from "antd";
+import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  let navigate = useNavigate();
+
+  const renderRoute = () => {
+    return props.route.map((route, key) => {
+      return (
+        <Menu.Item
+          key={key}
+          onClick={() => {
+            navigate(route.url);
+          }}
+        >
+          {route.name}
+        </Menu.Item>
+      );
+    });
+  };
+
   return (
-    <>
-      <PageHeader
-        // onBack={() => null}
-        title="Navbar"
-        subTitle="Navbar subtitle"
-      />
-    </>
+    <Menu theme="dark" mode="horizontal">
+      {renderRoute()}
+    </Menu>
   );
 }

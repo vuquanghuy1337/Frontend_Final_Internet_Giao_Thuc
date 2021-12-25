@@ -1,29 +1,19 @@
-import { Routes, Route, Link } from "react-router-dom";
-
-import Navbar from "./Components/Navbar";
-import * as React from "react";
-import Home from "./Layout/Home";
-import Todo from "./Todo/Todos";
-
-const About = React.lazy(() => import("./Layout/About"));
-const Blog = React.lazy(() => import("./Blog/Blog"));
-const Library = React.lazy(() => import("./Library/Library"));
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { ROUTE } from "./route";
 
 function App() {
-  const isLogin = true;
+  const renderRoute = () => {
+    return ROUTE.map((route, key) => {
+      return <Route key={key} path={route.url} element={route.component} />;
+    });
+  };
 
   return (
-    <div className="App">
-      <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home isLogin={isLogin} />} />
-        <Route path="about" element={<About />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="library" element={<Library />} />
-        <Route path="todo" element={<Todo />} />
-      </Routes>
-    </div>
+    <>
+      <Navbar route={ROUTE} />
+      <Routes>{renderRoute()}</Routes>
+    </>
   );
 }
 
