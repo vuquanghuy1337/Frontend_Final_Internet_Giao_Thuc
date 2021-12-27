@@ -3,8 +3,7 @@ export default function TodoList(props) {
   // console.log(list);
 
   const renderList = () => {
-    return list
-      ? list.map((l, key) => {
+    return list.map((l, key) => {
           return (
             <li key={key}>
               <button value={key} onClick={onClick}>
@@ -12,8 +11,7 @@ export default function TodoList(props) {
               </button>
             </li>
           );
-        })
-      : "Null";
+        });
   };
 
   return (
