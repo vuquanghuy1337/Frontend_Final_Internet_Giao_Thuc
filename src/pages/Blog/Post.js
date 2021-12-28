@@ -1,12 +1,15 @@
-export default function Post() {
+export default function Post(props) {
+  const { data } = props;
+  console.log(data);
   return (
     <div className="Post border">
       <div className="content">
-        <p>Author</p>
+        <p>{data?.author ? data.author : "null"}</p>
         <p>
-          Date posted: <span>19:50:20 22/11/2021</span>
+          Date posted:{" "}
+          <span>{data?.date_posted ? data.date_posted : "null"}</span>
         </p>
-        <p>Content</p>
+        <p>{data?.content ? data.content : "null"}</p>
       </div>
     </div>
   );
