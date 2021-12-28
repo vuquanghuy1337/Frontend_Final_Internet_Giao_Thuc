@@ -1,4 +1,4 @@
-import { Row, Col } from "antd";
+import { Button, Row, Col } from "antd";
 import { useEffect, useState } from "react";
 import TodoDetail from "./TodoDetail";
 import TodoList from "./TodoList";
@@ -44,42 +44,58 @@ export default function Todo() {
     setDetail(ListDetail[0]);
   }, []);
 
-  const handleChangeList = (e) => {
-    setCurrentList(e.target.value);
-    setDetail(ListDetail[e.target.value]);
-    console.log(detail)
+  const handleChangeList = (key) => {
+    setCurrentList(key);
+    setDetail(ListDetail[key]);
+    // console.log(key);
   };
 
-const handleChangeStatus = (e) =>{
-  // console.log(e)
-  setDetail((pre)=>{
-    let item = pre.detail.find((item)=> item.taskName === e.taskName && item.status === parseInt(e.status));
-// item.status = 1
-    // console.log(e.changeType)
-    switch(e.changeType){
-      case "dec" : item.status = item.status - 1; break;
-      case "inc" : item.status = item.status + 1; break;
-    }
-    
-    // console.log(item)
-    // pre.map((item)=> {
-    //  return pre.detail.find((item)=> item.taskName === e.taskName && item.status === parseInt(e.status)) || item
-    // })
-    return {...pre, item} 
-  })
-
-
-}
+  const handleChangeStatus = (e) => {
+    setDetail((pre) => {
+      let item = pre.detail.find(
+        (item) =>
+          item.taskName === e.taskName && item.status === parseInt(e.status)
+      );
+      switch (e.changeType) {
+        case "dec":
+          item.status = item.status - 1;
+          break;
+        case "inc":
+          item.status = item.status + 1;
+          break;
+        default:
+          break;
+      }
+      return { ...pre, item };
+    });
+  };
 
   return (
     <div>
-      <h1>Todo Page: List {currentList}</h1>
+      <div>
+        <Row>
+          <h4>Todo Page: List {currentList}</h4>
+        </Row>
+        <Row>
+          <Button type="primary">Thêm mới</Button>
+          <Button type="danger">Xóa</Button>
+        </Row>
+      </div>
+
       <Row>
         <Col span={6}>
-          {list ? <TodoList list={list} onClick={handleChangeList} /> : "Không có dữ liệu"}
+          {list ? (
+            <TodoList list={list} onClick={handleChangeList} />
+          ) : (
+            "Không có dữ liệu"
+          )}
         </Col>
         <Col span={24 - 6}>
-          {detail ? <TodoDetail detail={detail} onChangeStatus={handleChangeStatus}/> : "Không có dữ liệu"}
+          {detail ? (
+            <TodoDetail detail={detail} onChangeStatus={handleChangeStatus} />
+          ) : (
+            "Không có dữ liệu"
+          )}
         </Col>
       </Row>
     </div>

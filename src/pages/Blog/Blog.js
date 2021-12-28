@@ -1,3 +1,4 @@
+import { Button, Row, Col, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import Post from "./Post";
 
@@ -16,10 +17,39 @@ export default function Blog() {
     });
   };
 
+  const handlePost = (e) => {
+    console.log(e);
+  };
+
   return (
-    <div>
-      Blog
-      {blogData ? renderBlogs() : ""}
-    </div>
+    <Row>
+      <Col span={24 / 2}>Blog</Col>
+      <Col span={24 / 2}>
+        <div>
+          <Form onFinish={handlePost}>
+            <Form.Item
+              // label="content"
+              placeholder="Nội dung"
+              name="content"
+              rules={[
+                {
+                  required: true,
+                  message: "Nội dung bài viết không được để trống!",
+                },
+              ]}
+            >
+              <Input.TextArea autoSize={false} />
+            </Form.Item>
+
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Đăng
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
+        <div> {blogData ? renderBlogs() : ""}</div>
+      </Col>
+    </Row>
   );
 }

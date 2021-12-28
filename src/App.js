@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./Components/Navbar";
 import { NAVBAR_ROUTE, ROUTE } from "./route";
 
 function App() {

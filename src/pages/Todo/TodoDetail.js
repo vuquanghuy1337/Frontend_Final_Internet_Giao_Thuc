@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import TodoItem from "./TodoItem";
 
 export default function TodoDetail(props) {
@@ -22,9 +22,15 @@ export default function TodoDetail(props) {
   const renderTodoItems = (array) => {
     return array.map((element, key) => {
       // console.log(element)
-      return <TodoItem {...{element}} key={key} onChangeStatus={props.onChangeStatus}></TodoItem>
+      return (
+        <TodoItem
+          {...{ element }}
+          key={key}
+          onChangeStatus={props.onChangeStatus}
+        ></TodoItem>
+      );
     });
-  }
+  };
 
   return (
     <Row>
