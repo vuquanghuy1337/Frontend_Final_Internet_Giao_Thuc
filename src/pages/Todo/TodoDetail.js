@@ -33,10 +33,21 @@ export default function TodoDetail(props) {
   };
 
   return (
-    <Row>
-      <Col span={8}>{renderTodoItems(array1)}</Col>
-      <Col span={8}>{renderTodoItems(array2)}</Col>
-      <Col span={8}>{renderTodoItems(array3)}</Col>
-    </Row>
+    <div className="ml-3">
+      <Row>
+        <Col span={8}>
+          <h5>Chưa làm</h5>
+          {renderTodoItems(array1)}
+        </Col>
+        <Col span={8}>
+          <h5>Đang làm</h5>
+          {renderTodoItems(array2)}
+        </Col>
+        <Col span={8} className="d-flex flex-column justify-content-center">
+          <h5>Đã hoàn thành</h5>
+          {renderTodoItems(array3)}
+        </Col>
+      </Row>
+    </div>
   );
 }

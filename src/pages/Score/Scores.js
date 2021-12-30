@@ -28,42 +28,42 @@ const SCORES_DATA = [
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "5",
   },
   {
     names: "Nguyễn Văn A",
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "6",
   },
   {
     names: "Nguyễn Văn A",
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "7",
   },
   {
     names: "Nguyễn Văn A",
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "5",
   },
   {
     names: "Nguyễn Văn A",
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "4",
   },
   {
     names: "Nguyễn Văn A",
     studentId: "B18DCVT062",
     ccScore: "1",
     thScore: "8",
-    finalScore: "9",
+    finalScore: "9.5",
   },
   {
     names: "Nguyễn Văn A",
@@ -145,19 +145,35 @@ const SCORES_DATA = [
 ];
 
 export default function Scores() {
+  let scoreArray = [];
+
   const columns = [
-    { title: "Họ và tên", dataIndex: "names" },
-    { title: "Mã sinh viên", dataIndex: "studentId" },
-    { title: "Điểm chuyên cần", dataIndex: "ccScore" },
-    { title: "Điểm thực hành", dataIndex: "thScore" },
-    { title: "Điểm cuối kỳ", dataIndex: "finalScore" },
+    { title: "Họ và tên", key: "name", dataIndex: "names" },
+    { title: "Mã sinh viên", key: "studentId", dataIndex: "studentId" },
+    { title: "Điểm chuyên cần (10%)", key: "ccScore", dataIndex: "ccScore" },
+    { title: "Điểm thực hành (20%)", key: "thScore", dataIndex: "thScore" },
+    { title: "Điểm cuối kỳ (70%)", key: "finalScore", dataIndex: "finalScore" },
+    {
+      title: "Điểm tổng kết",
+      key: "totalScore",
+      render: (item) => {
+        // console.log(item);
+        let final = parseFloat(item.finalScore);
+        let cc = parseFloat(item.ccScore);
+        let th = parseFloat(item.thScore);
+        let total = (final * 70) / 100 + (cc * 10) / 100 + (th * 20) / 100;
+        scoreArray.push(total);
+        return `${total}`;
+      },
+    },
   ];
+
   return (
-    <>
+    <div className="ScorePage">
       <Table columns={columns} dataSource={SCORES_DATA} />
-      <div style={{ width: "400px" }}>
-        <ScoresChart />
+      <div style={{ width: "450px" }}>
+        <ScoresChart data={scoreArray} />
       </div>
-    </>
+    </div>
   );
 }

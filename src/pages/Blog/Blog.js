@@ -1,8 +1,24 @@
-import { Button, Row, Col, Form, Input } from "antd";
+import { Button, Row, Col, Form, Input, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import Post from "./Post";
 
-const BLOG_DATA = [{ author: "A", date_posted: "xxxx", content: "a" }];
+const BLOG_DATA = [
+  {
+    author: "Nguyễn Văn A",
+    date_posted: "2021-11-12",
+    content: "Có ai làm được bài này không?",
+    attachment:
+      "https://scontent.fhan2-4.fna.fbcdn.net/v/t1.18169-9/25659234_563289877341634_8836860418612025611_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=PV4TUD0CFVgAX8wOka8&_nc_ht=scontent.fhan2-4.fna&oh=00_AT87o5gJf2aVY7CnSlRglTI--EpgMd3ECowY1YYbILv0Jw&oe=61F24CF4",
+  },
+  {
+    author: "Nguyễn Văn B",
+    date_posted: "2021-11-13",
+    content: "Có đề này khó, ai làm được không?",
+    attachment:
+      "https://scontent.fhan2-4.fna.fbcdn.net/v/t1.18169-9/25659234_563289877341634_8836860418612025611_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=cdbe9c&_nc_ohc=PV4TUD0CFVgAX8wOka8&_nc_ht=scontent.fhan2-4.fna&oh=00_AT87o5gJf2aVY7CnSlRglTI--EpgMd3ECowY1YYbILv0Jw&oe=61F24CF4",
+  },
+];
 
 export default function Blog() {
   const [blogData, setBlogData] = useState([]);
@@ -22,10 +38,10 @@ export default function Blog() {
   };
 
   return (
-    <Row>
-      <Col span={24 / 2}>Blog</Col>
+    <Row className="BlogPage">
       <Col span={24 / 2}>
         <div>
+          <h6>Đăng bài viết mới</h6>
           <Form onFinish={handlePost}>
             <Form.Item
               // label="content"
@@ -39,6 +55,12 @@ export default function Blog() {
               ]}
             >
               <Input.TextArea autoSize={false} />
+            </Form.Item>
+
+            <Form.Item name="attachment">
+              <Upload>
+                <Button icon={<UploadOutlined />}>Click to Upload</Button>
+              </Upload>
             </Form.Item>
 
             <Form.Item>

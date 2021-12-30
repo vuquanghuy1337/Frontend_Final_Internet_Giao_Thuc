@@ -3,11 +3,36 @@ import { Table } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const MAILS_LIST = [
-  { id: 0, sender: "A", subject: "subject A", sent_time: "" },
-  { id: 1, sender: "B", subject: "subject B", sent_time: "" },
-  { id: 2, sender: "C", subject: "subject C", sent_time: "" },
-  { id: 3, sender: "D", subject: "subject D", sent_time: "" },
-  { id: 4, sender: "E", subject: "subject E", sent_time: "" },
+  {
+    id: 0,
+    sender: "Học sinh A",
+    subject: "Về việc xin tăng thời gian làm bài",
+    sent_time: "3 giờ trước",
+  },
+  {
+    id: 1,
+    sender: "Học sinh B",
+    subject: "Về việc xin phép gia hạn bài tập",
+    sent_time: "4 giờ trước",
+  },
+  {
+    id: 2,
+    sender: "Học sinh C",
+    subject: "Về việc gia hạn bài tập",
+    sent_time: "4 giờ trước",
+  },
+  {
+    id: 3,
+    sender: "Học sinh D",
+    subject: "Về việc đổi điểm tiếng anh",
+    sent_time: "4 giờ trước",
+  },
+  {
+    id: 4,
+    sender: "Học sinh E",
+    subject: "Về việc miễn giảm học phí",
+    sent_time: "4 giờ trước",
+  },
 ];
 
 export default function Mails() {
@@ -27,9 +52,9 @@ export default function Mails() {
   };
 
   return (
-    <>
+    <div className="MailPage">
       <Table columns={columns} dataSource={MAILS_LIST} onRow={handleRowClick} />
       <Outlet></Outlet>
-    </>
+    </div>
   );
 }

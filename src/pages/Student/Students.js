@@ -49,10 +49,10 @@ export default function Students() {
   ];
 
   return (
-    <>
+    <div className="StudentPage">
       <h1>Thông tin sinh viên</h1>
       <Table columns={columns} dataSource={STUDENTS_DATA} />
       <Outlet></Outlet>
-    </>
+    </div>
   );
 }

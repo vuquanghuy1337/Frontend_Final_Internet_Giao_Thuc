@@ -1,8 +1,14 @@
-import { Menu } from "antd";
+import { Menu, Row, Col, Button } from "antd";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../utils/UserContext";
+import { Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import LoginForm from "./LoginForm";
 
 export default function Navbar(props) {
   let navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   const renderRoute = () => {
     return props.route.map((route, key) => {
@@ -20,8 +26,33 @@ export default function Navbar(props) {
   };
 
   return (
-    <Menu theme="dark" mode="horizontal">
-      {renderRoute()}
-    </Menu>
+    <nav>
+      <Menu theme="" mode="horizontal">
+        {renderRoute()}
+        <Menu.Item>
+          <div>
+            <Avatar
+              shape="circle"
+              size="small"
+              icon={user?.id ? "" : <UserOutlined />}
+            >
+              {user?.name}
+            </Avatar>
+            {user?.id ? (
+              <Button
+                onClick={() => setUser(null)}
+                className="mx-3"
+                type="primary"
+                size="small"
+              >
+                Đăng xuất
+              </Button>
+            ) : (
+              ""
+            )}
+          </div>
+        </Menu.Item>
+      </Menu>
+    </nav>
   );
 }

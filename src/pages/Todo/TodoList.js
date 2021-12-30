@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 export default function TodoList(props) {
   const { onClick, list } = props;
-  // console.log(list);
 
   const renderList = () => {
     return list.map((l, key) => {
@@ -21,6 +20,7 @@ export default function TodoList(props) {
     <div className="border">
       {/* <ul>{renderList()}</ul> */}
       <List
+        style={{ background: "white" }}
         size="small"
         itemLayout="horizontal"
         dataSource={list}
@@ -28,8 +28,8 @@ export default function TodoList(props) {
         renderItem={(item, key) => {
           return (
             <List.Item key={key}>
-              <Button value={key} onClick={() => onClick(key)}>
-                {item.name} {key}
+              <Button value={key} onClick={() => onClick(item.id)}>
+                {item.name}
               </Button>
             </List.Item>
           );
