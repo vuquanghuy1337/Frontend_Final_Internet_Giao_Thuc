@@ -39,7 +39,7 @@ export default function Blog() {
 
   return (
     <Row className="BlogPage">
-      <Col span={24 / 2}>
+      <Col span={24 }>
         <div>
           <h6>Đăng bài viết mới</h6>
           <Form onFinish={handlePost}>

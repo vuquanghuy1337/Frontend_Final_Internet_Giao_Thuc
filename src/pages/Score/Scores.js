@@ -171,7 +171,8 @@ export default function Scores() {
   return (
     <div className="ScorePage">
       <Table columns={columns} dataSource={SCORES_DATA} />
-      <div style={{ width: "450px" }}>
+      <div className="bg"
+      style={{ width: "450px" }}>
         <ScoresChart data={scoreArray} />
       </div>
     </div>
